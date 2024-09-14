@@ -104,7 +104,7 @@ public class MyXlet implements UserEventListener, Xlet {
 	evtRepo.addKey(HRcEvent.VK_ENTER);
 	evtRepo.addKey(HRcEvent.VK_UP);
 	evtRepo.addKey(HRcEvent.VK_DOWN);
-	evtRepo.addKey(461); // □
+	evtRepo.addKey(461);
 
 	scene = HSceneFactory.getInstance().getDefaultHScene();
 	scene.add(logUI, BorderLayout.CENTER);
