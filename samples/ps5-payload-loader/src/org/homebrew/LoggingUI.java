@@ -40,6 +40,7 @@ public class LoggingUI extends Container {
     }
 
     public void log(String msg) {
+	System.out.println(msg);
 	StringBuffer sb = new StringBuffer();
 
 	int col = 0;
