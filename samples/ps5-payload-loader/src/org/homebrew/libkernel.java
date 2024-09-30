@@ -50,6 +50,10 @@ public class libkernel {
     public static int dup2(int oldfd, int newfd) {
 	return (int)lib.invoke("dup2", oldfd, newfd);
     }
+
+    public static int ftruncate(int fd, long length) {
+	return (int)lib.invoke("ftruncate", fd, length);
+	}
     
     public static int kqueue() {
 	return (int)lib.invoke("kqueue");
@@ -154,4 +158,8 @@ public class libkernel {
     public static long getCurrentCpu() {
 	return lib.invoke("sceKernelGetCurrentCpu");
     }
+
+    public static int _umtx_op(long obj, int op, long flags, long addr, long addr2) {
+	return (int)lib.invoke("_umtx_op", obj, op, flags, addr, addr2);
+	}
 }
