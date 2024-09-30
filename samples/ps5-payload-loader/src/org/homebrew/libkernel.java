@@ -150,4 +150,8 @@ public class libkernel {
     public static long jitMapSharedMemory(int fd, int prot, long dest) {
 	return lib.invoke("sceKernelJitMapSharedMemory", fd, prot, dest);
     }
+
+    public static long getCurrentCpu() {
+	return lib.invoke("sceKernelGetCurrentCpu");
+    }
 }

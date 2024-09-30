@@ -7,6 +7,9 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.homebrew.umtx.Exploit;
+import org.homebrew.umtx.RaceResult;
+
 public class KernelMemory {
     // BSD macros
     private static final int AF_INET6 = 28;
@@ -566,6 +569,19 @@ public class KernelMemory {
 	if(pipe_addr == 0) {
 	    throw new IOException("Cannot setup R/W pipe");
 	}
+    }
+
+    public static void enableRWUmtx() {
+	println("  [*] Preparing for exploitation ...");
+	Exploit umtxExploit = new Exploit();
+	int returnCode = umtxExploit.prepare();
+	if (returnCode < 0) {
+	    println("  [*] Preparation failed, returnCode: " + returnCode);
+	    return;
+	}
+	println("  [*] Triggering umtx race...");
+	RaceResult raceResult = umtxExploit.race();
+	println("  [+] Race won after " + raceResult.numTries + " tries, lookupFd: " + raceResult.lookupFd + " winnerFd: " + raceResult.winnerFd);
     }
 
     public static long getBaseAddress() throws IOException {

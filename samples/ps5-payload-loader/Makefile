@@ -36,7 +36,7 @@ export JAVA11_HOME
 # Compilation artifacts
 #
 CLASSPATH := $(BDJSDK_HOME)/target/lib/enhanced-stubs.zip:$(BDJSDK_HOME)/target/lib/sony-stubs.jar
-SOURCES   := $(wildcard src/org/homebrew/*.java)
+SOURCES   := $(wildcard src/org/homebrew/*.java src/org/homebrew/*/*.java)
 JAR_SOURCES   := $(wildcard src/*.java)
 JFLAGS    := -Xlint:-options
 

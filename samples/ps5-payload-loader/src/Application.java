@@ -12,7 +12,7 @@ public class Application {
 	    LoggingUI.getInstance().log("[+] Java security manager disabled");
 
 	    LoggingUI.getInstance().log("[*] Obtaining kernel .data R/W capabilities...");
-	    KernelMemory.enableRW();
+	    KernelMemory.enableRWUmtx();
 	    LoggingUI.getInstance().log("[+] Kernel .data R/W achieved");
 
 	    KernelPatching.escalatePrivileges();
