@@ -54,6 +54,10 @@ public class libkernel {
     public static int ftruncate(int fd, long length) {
 	return (int)lib.invoke("ftruncate", fd, length);
 	}
+
+    public static int fstat(int fd, long buf) {
+	return (int)lib.invoke("fstat", fd, buf);
+	}
     
     public static int kqueue() {
 	return (int)lib.invoke("kqueue");

@@ -581,7 +581,11 @@ public class KernelMemory {
 	}
 	println("  [*] Triggering umtx race...");
 	RaceResult raceResult = umtxExploit.race();
-	println("  [+] Race won after " + raceResult.numTries + " tries, lookupFd: " + raceResult.lookupFd + " winnerFd: " + raceResult.winnerFd);
+	if (raceResult.returnCode != 0) {
+		println("  [+] Race failed, returnCode: " + raceResult.returnCode);
+		return;
+	}
+	println("  [+] Race won after " + raceResult.numTries + " tries, lookupFd: " + raceResult.lookupFd + " reclaimFd: " + raceResult.reclaimFd);
     }
 
     public static long getBaseAddress() throws IOException {
