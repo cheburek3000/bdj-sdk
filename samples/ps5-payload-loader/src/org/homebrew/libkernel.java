@@ -166,4 +166,8 @@ public class libkernel {
     public static int _umtx_op(long obj, int op, long flags, long addr, long addr2) {
 	return (int)lib.invoke("_umtx_op", obj, op, flags, addr, addr2);
 	}
+
+	public static int select(int nfds, long readfds, long writefds, int exceptfds, long timeout) {
+	return (int)lib.invoke("select", nfds, readfds, writefds, exceptfds, timeout);
+	}
 }

