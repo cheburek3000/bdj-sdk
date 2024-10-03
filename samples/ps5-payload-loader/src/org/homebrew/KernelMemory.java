@@ -586,7 +586,7 @@ public class KernelMemory {
 	}
 	println("  [+] Race won after " + raceResult.numTries + " tries, lookupFd: " + raceResult.lookupFd + " reclaimFd: " + raceResult.reclaimFd);
 	Exploit.RWResult rwResult = umtxExploit.getRW(raceResult.lookupFd, raceResult.reclaimFd);
-	if (raceResult.returnCode != 0) {
+	if (rwResult.returnCode < 0) {
 		println("  [+] RW failed, returnCode: " + rwResult.returnCode);
 		return;
 	}
